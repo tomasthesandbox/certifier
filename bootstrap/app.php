@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Log;
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         web: __DIR__.'/../routes/web.php',
+        api: __DIR__.'/../routes/api.php',
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
     )
@@ -33,10 +34,6 @@ return Application::configure(basePath: dirname(__DIR__))
             ]);
 
             if ($request->is('api/*'))
-                return response()->json(['response' => false, 'message' => 'Ha ocurrido un error inesperado, por favor intente más tarde.', 'result' => null], 500);
-
-            return response()->view('errors.generic', [
-                'message' => 'Ha ocurrido un error inesperado, por favor intente más tarde.'
-            ], 500);
+                return response()->json(['response' => false, 'message' => 'Unexpected server error. Please try again later.', 'result' => null], 500);
         });
     })->create();

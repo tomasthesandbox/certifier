@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('code', 6);
+            $table->string('token');
             $table->integer('failed_attempts');
-            $table->integer('date_of_use')->nullable();
+            $table->timestamp('date_of_use')->nullable();
             $table->timestamps();
         });
     }

@@ -11,7 +11,7 @@ class AccessLog extends Model
 
     protected $fillable = [
         'user_id',
-        'code',
+        'token',
         'failed_attempts',
         'date_of_use'
     ];
@@ -26,7 +26,7 @@ class AccessLog extends Model
         return [
             'id' => 'integer',
             'user_id' => 'integer',
-            'code' => 'string',
+            'token' => 'string',
             'failed_attempts' => 'integer',
             'date_of_use' => 'timestamp'
         ];
@@ -34,7 +34,7 @@ class AccessLog extends Model
 
     public static $rules = [
         'user_id' => 'required|integer|min:1|exists:users,id',
-        'code' => 'required|string',
+        'token' => 'required|string',
         'failed_attempts' => 'required|integer',
         'date_of_use' => 'nullable|date_format:Y-m-d H:i:s'
     ];
